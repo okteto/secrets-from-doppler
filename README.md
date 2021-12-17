@@ -1,4 +1,4 @@
-# Integrate Doppler and Okteto pipelines together
+# Integrate Doppler with your Okteto pipelines
 
 This demo shows you how bring secrets defined in [Doppler](https://doppler.com) into your Okteto development environment. 
 
