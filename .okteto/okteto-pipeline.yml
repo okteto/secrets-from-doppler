@@ -1,6 +1,6 @@
 deploy:
 - apt-get update
-- apt-get install -y gnupg apt-transport-https
+- apt-get install -y apt-transport-https ca-certificates gnupg
 - curl -sLf --retry 3 'https://packages.doppler.com/public/cli/gpg.DE2A7741A397C129.key' > /tmp/doppler.key
 - apt-key add /tmp/doppler.key
 - apt-get update
