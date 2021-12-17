@@ -6,5 +6,6 @@ deploy:
 - doppler --version
 - export MY_NAME=$(doppler secrets get MY_NAME)
 - export MY_COLOR=$(doppler secrets get MY_COLOR)
+- echo my name is $MY_NAME
 - okteto build -t okteto.dev/hello-doppler:${OKTETO_GIT_COMMIT} .
 - helm upgrade --install hello-doppler chart --set image.tag=${OKTETO_GIT_COMMIT},color=$MY_COLOR,name=$MY_NAME
