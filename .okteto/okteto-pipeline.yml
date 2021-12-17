@@ -3,6 +3,5 @@ deploy:
 - curl -sLf --retry 3 'https://packages.doppler.com/public/cli/gpg.DE2A7741A397C129.key' | apt-key add -
 - echo "deb https://packages.doppler.com/public/cli/deb/debian any-version main" | tee /etc/apt/sources.list.d/doppler-cli.list
 - apt-get update && apt-get install -y doppler
-#- okteto build -t okteto.dev/hello-doppler:${OKTETO_GIT_COMMIT} .
-- echo $(doppler secrets get MY_NAME --plain)
+- okteto build -t okteto.dev/hello-doppler:${OKTETO_GIT_COMMIT} .
 - "helm upgrade --install hello-doppler chart --set image.tag=${OKTETO_GIT_COMMIT},color=$(doppler secrets get MY_COLOR --plain),name=$(doppler secrets get MY_NAME --plain)"
