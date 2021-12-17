@@ -11,3 +11,11 @@ This demo shows you how bring secrets defined in [Doppler](https://doppler.com) 
 
 Once the project and secrets have been configured, deploy your development environment in Okteto Cloud (or your own Okteto Enteprise instance).
 
+Go to the endpoints in the dashboard, and click on it. You'll see something like this:
+
+```
+Hi, my name is Cindy, and my favorite color is Blue
+```
+
+Go to the [pipeline manifest](.okteto/okteto-pipeline.yml) and notice how the secrets are being pulled from your Doppler project via the  `doppler run` command. If you go to Doppler, change the values of the secrets, and redeploy your development environment, you'll see the changes immediately.
+
