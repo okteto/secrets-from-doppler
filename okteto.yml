@@ -1,5 +1,5 @@
 name: hello-doppler
-image: okteto/installer:1.2.12
+image: okteto/golang:1
 command: bash
 securityContext:
   capabilities:
