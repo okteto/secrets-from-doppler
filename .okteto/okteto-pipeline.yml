@@ -1,3 +1,3 @@
 deploy:
 - okteto build -t okteto.dev/hello:${OKTETO_GIT_COMMIT} .
-- helm upgrade --install hello-doppler --set color=$MY_COLOR,name=$MY_NAME
+- helm upgrade --install hello-doppler . --set color=$MY_COLOR,name=$MY_NAME
