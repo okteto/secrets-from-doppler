@@ -5,9 +5,7 @@ metadata:
   labels:
     {{- include "hello.labels" . | nindent 4 }}
 spec:
-  {{- if not .Values.autoscaling.enabled }}
   replicas: {{ .Values.replicaCount }}
-  {{- end }}
   selector:
     matchLabels:
       {{- include "hello.selectorLabels" . | nindent 6 }}
@@ -20,11 +18,7 @@ spec:
       labels:
         {{- include "hello.selectorLabels" . | nindent 8 }}
     spec:
-      {{- with .Values.imagePullSecrets }}
-      imagePullSecrets:
-        {{- toYaml . | nindent 8 }}
-      {{- end }}
-      serviceAccountName: {{ include "hello.serviceAccountName" . }}
+      serviceAccountName: default
       securityContext:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
       containers:
@@ -35,9 +29,9 @@ spec:
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           env:
             - name: MY_COLOR
-              value: {{ .values.color }}
+              value: {{ .Values.color }}
             - name: MY_NAME
-              value: {{ .values.name }}
+              value: {{ .Values.name }}
           ports:
             - name: http
               containerPort: 8080
@@ -52,15 +46,3 @@ spec:
               port: http
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
-      {{- with .Values.nodeSelector }}
-      nodeSelector:
-        {{- toYaml . | nindent 8 }}
-      {{- end }}
-      {{- with .Values.affinity }}
-      affinity:
-        {{- toYaml . | nindent 8 }}
-      {{- end }}
-      {{- with .Values.tolerations }}
-      tolerations:
-        {{- toYaml . | nindent 8 }}
-      {{- end }}
