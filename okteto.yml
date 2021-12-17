@@ -1,0 +1,15 @@
+name: hello-doppler
+image: okteto/installer:1.2.12
+command: bash
+securityContext:
+  capabilities:
+    add:
+    - SYS_PTRACE
+sync:
+- .:/usr/src/app
+forward:
+- 2345:2345
+- 8080:8080
+volumes:
+- /go/pkg/
+- /root/.cache/go-build/
