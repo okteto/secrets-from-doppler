@@ -4,5 +4,4 @@ deploy:
 - echo "deb https://packages.doppler.com/public/cli/deb/debian any-version main" | tee /etc/apt/sources.list.d/doppler-cli.list
 - apt-get update && apt-get install -y doppler
 - okteto build -t okteto.dev/hello-doppler:${OKTETO_GIT_COMMIT} .
-- echo $DOPPLER_TOKEN
-- doppler run -- helm upgrade --install hello-doppler chart --set image.tag=${OKTETO_GIT_COMMIT},color=$MY_COLOR,name=$MY_NAME
+- doppler run -- echo "helm upgrade --install hello-doppler chart --set image.tag=${OKTETO_GIT_COMMIT},color=${MY_COLOR},name=${MY_NAME}"
