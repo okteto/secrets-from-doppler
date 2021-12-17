@@ -1,5 +1,6 @@
 deploy:
 - apt-get update && apt-get install -y -qq apt-transport-https ca-certificates gnupg
 - curl -sLf --retry 3 'https://packages.doppler.com/public/cli/gpg.DE2A7741A397C129.key' | apt-key add -
+- apt-get update && apt-get install -y -qq doppler
 - okteto build -t okteto.dev/hello-doppler:${OKTETO_GIT_COMMIT} .
 - helm upgrade --install hello-doppler chart --set image.tag=${OKTETO_GIT_COMMIT}
