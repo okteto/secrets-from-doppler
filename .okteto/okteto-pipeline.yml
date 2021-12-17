@@ -1,8 +1,10 @@
 deploy:
-- apt-get update && apt-get install -y -qq apt-transport-https ca-certificates gnupg
+- apt-get update && apt-get install -y -qq gnupg
 - curl -sLf --retry 3 'https://packages.doppler.com/public/cli/gpg.DE2A7741A397C129.key' | apt-key add -
-- apt-get update
-- apt-get install -y doppler
+- echo "deb https://packages.doppler.com/public/cli/deb/debian any-version main" | tee /etc/apt/sources.list.d/doppler-cli.list
+- apt-get update && apt-get install -y doppler
 - doppler --version
+- export MY_NAME=$(doppler secrets get MY_NAME)
+- export MY_COLOR=$(doppler secrets get MY_COLOR)
 - okteto build -t okteto.dev/hello-doppler:${OKTETO_GIT_COMMIT} .
-- helm upgrade --install hello-doppler chart --set image.tag=${OKTETO_GIT_COMMIT}
+- helm upgrade --install hello-doppler chart --set image.tag=${OKTETO_GIT_COMMIT},color=$MY_COLOR,name=$MY_NAME
