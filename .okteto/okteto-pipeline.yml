@@ -4,7 +4,7 @@ deploy:
 - curl -sLf --retry 3 'https://packages.doppler.com/public/cli/gpg.DE2A7741A397C129.key' > /tmp/doppler.key
 - apt-key add /tmp/doppler.key
 - apt-get update
-- apt-get install doppler
+- apt-get install -y doppler
 - export MY_NAME=$(doppler secrets get MY_NAME)
 - export MY_COLOR=$(doppler secrets get MY_COLOR)
 - okteto build -t okteto.dev/hello:${OKTETO_GIT_COMMIT} .
