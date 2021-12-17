@@ -1,3 +1,3 @@
 deploy:
-- okteto build -t okteto.dev/hello:${OKTETO_GIT_COMMIT} .
-- helm upgrade --install hello-doppler . 
+- okteto build -t okteto.dev/hello-doppler:${OKTETO_GIT_COMMIT} .
+- helm upgrade --install hello-doppler chart --set tag=${OKTETO_GIT_COMMIT}
