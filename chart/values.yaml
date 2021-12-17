@@ -6,7 +6,7 @@ replicaCount: 1
 name: ""
 color: ""
 image:
-  repository: okteto.dev/hello
+  repository: okteto.dev/hello-doppler
   pullPolicy: Always
   tag: ""
 
